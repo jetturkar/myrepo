@@ -9,24 +9,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: TerraformCLI@0
-  displayName: Terraform Init
+- task: TerraformTaskV4@4
   inputs:
+    provider: 'azurerm'
     command: 'init'
-    allowTelemetryCollection: true
 
-- task: TerraformCLI@0
-  displayName: Terraform Plan
+- task: TerraformTaskV4@4
   inputs:
+    provider: 'azurerm'
     command: 'plan'
-    environmentServiceName: 'youtube-app-service-connection'
-    allowTelemetryCollection: false
-
-- task: TerraformCLI@0
-  displayName: Terraform Apply
-  inputs:
-    command: 'apply'
-    environmentServiceName: 'youtube-app-service-connection'
-    allowTelemetryCollection: true
-
-
+    environmentServiceNameAzureRM: 'aks-sp'
